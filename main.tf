@@ -1,7 +1,9 @@
 resource "aws_instance" "my_instance" {
-	ami = "ami-09e67e426f25ce0d7"
-	instance_type = "t2.micro"
+	ami = var.ami_id
+	instance_type = var.instance_type
+	count = 5 
 	tags = {
 		Name = "Terra-instance"
 	}
 }
+

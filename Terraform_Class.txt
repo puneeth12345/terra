@@ -100,7 +100,56 @@ Execution process
 	5) Terraform validate 
 		- Used to check the syntax of the all terraform scripts in the project.
 			
-				
+Terraform Remote state (Backend)
+	If we are working in a team saving state local doesnt help to sync the configuration. Instead of having a local JSON state file named terraform.tfstate, the state file is stored in a remote place such as AWS S3, Consul, Terraform cloud etc. and all the team members will refer to this remote state called Backend.
+	
+Variable and Outputs 
+		
+	Input variables
+		- Input variables serves as parameters for our terraform scripts.
+		- Main advantage is module can be custamized without altering the terraform source code.
+		- To suppres the values in the output use sensitive = true	
+		
+			variable "instance_type" {
+				type = string
+				default = "t2.micro"
+			}
+			
+			variable "instance_type" {
+				type = number
+				default = "t2.micro"
+			}
+			
+			variable "docker_ports" {
+				type = list(object({
+					internal = number
+					external = number
+					protocol = string
+				}))
+				default = [{
+					internal = 8080
+					external = 8081
+					protocol = tcp
+				}]
+			}
+			
+	Output variables
+		- output variables are like return values of a terraform module.
+		- A child module can use output variables to feed the data to other modules such as parent module and root module.
+		- root module can use output variables to print the values to CLI after running the resources.
+		- To suppres the values in the output use sensitive = true 
+		
+	Local variables 
+		- Instead of having same value multiple time in a same terraform code we can put that value in local variable and we can use it, so that If we want to change the value we can change it once in the variable.
+		
+			locals {
+				<var_name> = "<value>"
+				<var_name1> = "<value>"
+				<var_name2> = "<value>"
+				<var_name3> = "<value>"
+				<var_name4> = "<value>"
+			}	
+	
 				
 			
 			  
