@@ -9,4 +9,23 @@ variable "ami_id" {
 	sensitive = true
 }
 
+variable "bname" {
+	type = string
+	default = "s3-test-backend-bucket-1111111"
+}
+
+variable "dynsmoname" {
+	type = string
+	default = "backend_dynamoDB"
+}
+
+variable "aws_region" {
+	type = string
+	default = "us-east-1"
+}
+
+variable "hash_key" {
+	type = string
+	default = "LockID"
+}
 

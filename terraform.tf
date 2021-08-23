@@ -7,4 +7,12 @@ terraform {
       source = "hashicorp/aws"
     }
   }	
+  
+   backend "s3" {
+                bucket = "s3-test-backend-bucket-1111111"
+                key = "backend/terraform.tfstate"
+                region = "us-east-1"
+                dynamodb_table = "backend_dynamoDB"
+                encrypt = true
+        }
 }
